@@ -660,11 +660,24 @@ def main():
 
 
 			##AI Castle
-
+			if type(ai_held_piece) == King and ai_fromsquare.startswith('e'):
+				board_dict[ai_fromsquare] = 'Empty'
+				board_dict[ai_tosquare] = ai_held_piece
+				ai_held_piece.piecepos = squarecenter(ai_tosquare)
+				if ai_tosquare.startswith('c'):
+					board_dict[f'd{ai_tosquare[1]}'] = board_dict[f'a{ai_tosquare[1]}']
+					board_dict[f'a{ai_tosquare[1]}'] = 'Empty'
+					board_dict[f'd{ai_tosquare[1]}'].piecepos = squarecenter(f'd{ai_tosquare[1]}')
+				elif ai_tosquare.startswith('g'):
+					
+					board_dict[f'f{ai_tosquare[1]}'] = board_dict[f'h{ai_tosquare[1]}']
+					board_dict[f'h{ai_tosquare[1]}'] = 'Empty'
+					board_dict[f'f{ai_tosquare[1]}'].piecepos = squarecenter(f'f{ai_tosquare[1]}')
 			##^^AI Castle
 
 			#dealing with sprite if any are captured
 			piecesprites.clear(screen,playboard)
+
 			if board_dict[ai_tosquare] != 'Empty':
 				activepiece.remove(board_dict[ai_tosquare])
 			piecesprites = pygame.sprite.Group(activepiece)
