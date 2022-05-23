@@ -1,0 +1,2 @@
+Put the folder containing the stockfish .exe (NOT the .exe itself) in this directory,
+version = stockfish_15_win_x64_avx2
